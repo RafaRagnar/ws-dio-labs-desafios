@@ -419,39 +419,6 @@ def recuperar_conta_cliente(cliente):
     return cliente.contas[0]
 
 
-def validar_cliente_por_cpf(cpf, clientes):
-    """
-    Valida se um cliente já existe na lista de clientes por CPF.
-
-    Args:
-        cpf (str): CPF do cliente a ser validado.
-        clientes (lista de Cliente): Lista de objetos Cliente.
-
-    Retorna:
-        Objeto Cliente ou None caso o cliente não seja encontrado.
-
-    Observações:
-        Solicita ao usuário o CPF do cliente.
-        Busca o cliente na lista de clientes utilizando a função `filtrar_cliente`.
-        Se o cliente não for encontrado, exibe uma mensagem de erro e retorna None.
-        Se o cliente for encontrado e existir outro cliente com o mesmo CPF, exibe uma mensagem de erro e retorna None.
-        Se o cliente for encontrado e não existir outro cliente com o mesmo CPF, retorna o objeto Cliente encontrado.
-    """
-
-    cpf = input(Fore.YELLOW + "Informe o CPF do cliente: " + Style.RESET_ALL)
-    cliente = filtrar_cliente(cpf, clientes)
-
-    if not cliente:
-        print(Fore.RED + "\nCliente não encontrado!" + Style.RESET_ALL)
-        return None
-
-    if cliente.ja_existe_outro_cliente_com_mesmo_cpf(clientes):
-        print(Fore.RED + "\nJá existe cliente com esse CPF!" + Style.RESET_ALL)
-        return None
-
-    return cliente
-
-
 def depositar(clientes):
     """
     Realiza um depósito na conta bancária de um cliente.
